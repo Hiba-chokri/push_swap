@@ -1,11 +1,7 @@
 #include "push_swap.h"
 
-// functions that will be used in filling the
-typedef struct s_list
-{
-    void	*content;
-    struct s_list	*next;
-}				t_list;
+// functions that will be used in filling te
+
 
 int	ft_atoi(const char *nptr)
 {
