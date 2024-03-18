@@ -13,9 +13,8 @@ typedef struct s_stack
 //create a pointer to the top of the stack
 t_stack *top;
 // fill the stack with the args values
- fill_stack(t_stack *top, int argc, char *argv[])
+ fill_stack_a(t_stack *top, int argc, char *argv[])
 {
-    t_stack *tmp;
     t_stack *new;
     int i;
 
@@ -28,7 +27,7 @@ t_stack *top;
             write(2, "Error\n", 6);
             exit(1);
         }
-        ft_lstadd_back(&tmp, new);
+        ft_lstadd_back(&top, new);
         i++;
     }
 }
@@ -57,18 +56,56 @@ void sort3(t_stack **top)
 {
     int max;
 
-    max = top -> data;
-    while (top -> next != NULL)
+    if (top > top -> next)
     {
-        if (top -> data < top -> next -> data)
-            max = top -> next -> data;
-        top = top -> next;
+        max = top;
+        rotate(&top);
     }
-    // condtions of sorting
+    else if (top -> next > top)
+    {
+        max = top -> next;
+        rotate_a(&(top -> next));
+        swap_a(&(top -> next));
+    }
+    if (top > top -> next)
+        swap_a(&top);
+}
+
+    // conditions of sorting
     // if the max element is in the beginning of the stack
     // if the max element is in the middle of the stack
     // if the max element is in the end of the stack
+
+void fill_stack_b(t_stack **a, t_stack **b)
+{
+    t_stack *curr;
+    t_stack *prev;
     
+    // create the stack b
+    if (*b == NULL)
+    {
+        *b = (t_stack *)malloc(sizeof(t_stack));
+        (*b) -> next = NULL;
+    }
+    prev = NULL;
+    curr = *a;
+    while (curr != NULL)
+    {
+        if (prev == NULL)
+            *a = curr -> next;
+        else
+            prev -> next = curr -> next;
+        curr -> next = *b;
+        *a = curr;
+        curr = *a;
+    }
+}
+void sort5(t_stack **top)
+{
+
+}
+{
+    // move the top 2 elements of stack a into stack b
 
 }
 
@@ -78,7 +115,7 @@ int main(int argc, char *argv[])
     t_stack *b;
     int *arr;
 
-    fillstack(&a, argc, argv);
+    fill_stack_a(&a, argc, argv);
     arr = fill_arr(argc, argv);
     bubbleSort(arr, argc);
     
