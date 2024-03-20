@@ -100,23 +100,131 @@ void fill_stack_b(t_stack **a, t_stack **b)
         curr = *a;
     }
 }
-void sort5(t_stack **top)
-{
 
+void sort5(t_stack **a, t_stack **b)
+{
+    t_stack *tmp;
+    t_stack *top;
+    fill_stack_b(&a, &b);// move the top 2 elements of stack a into stack b
+    sort3(&a); // sort the rest 3 elements of stack a
+                // sort the 2 elements of stack b
+    tmp = *b;
+    if (tmp > tmp -> next)
+        t
 }
 {
     // move the top 2 elements of stack a into stack b
 
 }
+// function to calcluate the size
+int calculate_size(t_stack *a)
+{
+    int ptr;
+    int size;
 
+    size = 0;
+    ptr = a;
+    while (ptr != NULL)
+    {
+        index++;
+        ptr = ptr -> next;
+    }
+    return (size);
+
+}
+int calculate_cost(t_stack **a, int size)
+{
+    int cost;
+    int mid;
+    int index;
+    t_stack *tmp;
+
+    mid = size / 2;
+    cost = 0;
+    tmp = *a;
+    index = 0;
+    if (tmp != NULL)
+    {
+        if (tmp < mid)
+            cost = index;
+        else
+            cost = size - index;
+        tmp = tmp -> next;
+        index++;
+        return (cost);
+    }
+}
+void push_b(t_stack **a, t_stack **b)
+{
+    
+}
+int bigger_target(int nb)
+{
+    int max_target;
+
+    max_target = 0;
+    if (nb > max_target)
+        max_target = nb;
+    return (max_target);
+}
+int find_max(t_stack *b)
+{
+    int max;
+
+    max = 0;
+    while (b != NULL)
+    {
+        if (b ->data > max)
+            max = b->data;
+        b = b->next;
+    }
+    return (max);
+}
+
+int find_target(t_stack *b, int nb)
+{
+    int target;
+    int found;
+    int max_targ;
+
+    target = 0;
+    found = 0;
+    while (b != NULL)
+    {
+        if (b->data < nb)
+        {
+            found = 1;
+            target = b -> data;
+            max_targ = bigger_target(target);
+        }
+        b = b -> next;
+    }
+    if (found == 0)
+        max_targ = find_max(b);
+    return (max_targ);
+}
+
+void move_target(t_stack *b, int target, int size)
+{
+    int mid;
+
+    mid = size / 2;
+    if (target < mid)
+    {
+
+    }
+}
+void find_target_node(t_stack *a, t_stack *b, int size)
 int main(int argc, char *argv[])
 {
     t_stack *a;
     t_stack *b;
     int *arr;
+    int size;
 
     fill_stack_a(&a, argc, argv);
     arr = fill_arr(argc, argv);
     bubbleSort(arr, argc);
+    size = calculate_size(a);
     
 }
