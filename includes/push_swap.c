@@ -132,32 +132,45 @@ int calculate_size(t_stack *a)
     return (size);
 
 }
-int calculate_cost(t_stack **a, int size)
+int find_index(t_stack *x, int nb)
 {
-    int cost;
-    int mid;
     int index;
-    t_stack *tmp;
 
-    mid = size / 2;
-    cost = 0;
-    tmp = *a;
     index = 0;
-    if (tmp != NULL)
+    while (x != NULL && x-> data != nb)
     {
-        if (tmp < mid)
-            cost = index;
-        else
-            cost = size - index;
-        tmp = tmp -> next;
         index++;
-        return (cost);
+        x = x->next;
     }
+    return (index);
 }
+// int calculate_cost(t_stack **a, int size)
+// {
+//     int cost;
+//     int mid;
+//     int index;
+//     t_stack *tmp;
+
+//     mid = size / 2;
+//     cost = 0;
+//     tmp = *a;
+//     index = 0;
+//     if (tmp != NULL)
+//     {
+//         if (tmp < mid)
+//             cost = index;
+//         else
+//             cost = size - index;
+//         tmp = tmp -> next;
+//         index++;
+//         return (cost);
+//     }
+// }
 void push_b(t_stack **a, t_stack **b)
 {
     
 }
+
 int bigger_target(int nb)
 {
     int max_target;
@@ -167,6 +180,7 @@ int bigger_target(int nb)
         max_target = nb;
     return (max_target);
 }
+
 int find_max(t_stack *b)
 {
     int max;
@@ -214,7 +228,20 @@ void move_target(t_stack *b, int target, int size)
 
     }
 }
-void find_target_node(t_stack *a, t_stack *b, int size)
+int moves_count(t_stack *x, int nb, int size)
+{
+    int cost;
+    int mid;
+    int index;
+
+    cost = 0;
+    mid = size / 2;
+    index = (x, nb);
+    if (index  < mid)
+        cost = index;
+    else
+        cost = size - index;
+}
 int main(int argc, char *argv[])
 {
     t_stack *a;
