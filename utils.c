@@ -30,29 +30,6 @@ int	ft_atoi(const char *nptr)
 	return (res * sign);
 }
 
-t_list	*ft_lstnew(void *content)
-{
-	t_list	*new_node;
-
-	new_node = NULL;
-	new_node = (t_list *)malloc(sizeof(t_list));
-	if (!new_node)
-		return (NULL);
-	new_node->content = content;
-	new_node->next = NULL;
-	return (new_node);
-}
-t_list	*ft_lstlast(t_list *lst)
-{
-	t_list	*ptr;
-
-	if (!lst)
-		return (NULL);
-	ptr = lst;
-	while (ptr->next != NULL)
-		ptr = ptr->next;
-	return (ptr);
-}
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
@@ -72,25 +49,44 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 	*lst = new;
 }
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+t_stack	*ft_lstnew(int content)
 {
-	t_list	*tmp;
+	t_stack	*new_node;
 
-	if (!lst || !*lst || !del)
-		return ;
-	tmp = *lst;
-	while (tmp)
-	{
-		tmp = tmp->next;
-		ft_lstdelone(*lst, del);
-		*lst = tmp;
-	}
+	new_node = NULL;
+	new_node = (t_stack *)malloc(sizeof(t_stack));
+	if (!new_node)
+		return (NULL);
+	new_node->content = content;
+	new_node->next = NULL;
+	return (new_node);
+}
+t_stack	*ft_lstlast(t_list *lst)
+{
+	t_stack	*ptr;
+
+	if (!lst)
+		return (NULL);
+	ptr = lst;
+	while (ptr->next != NULL)
+		ptr = ptr->next;
+	return (ptr);
 }
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+void	ft_lstadd_back(t_stack **lst, t_stack *new)
 {
-	if (!lst || !del)
+	if (lst == NULL)
 		return ;
-	del(lst->content);
-	free(lst);
+	if (*lst == NULL)
+		*lst = new;
+    else
+		ft_lstlast(*lst)->next = new;
+}
+
+void	ft_lstadd_front(t_stack **lst, t_stack *new)
+{
+	if (lst == NULL || new == NULL)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }
