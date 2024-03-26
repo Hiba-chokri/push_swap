@@ -1,7 +1,7 @@
 CC = cc -fsanitize=address -g3
 CFLAGS = -Wall -Wextra #-Werror 
 
-SRC = main.c
+SRC = main.c sort_smalls.c actions1.c find_cost_index.c
 
 OBJ = $(SRC:.c=.o)
 

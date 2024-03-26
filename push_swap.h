@@ -18,4 +18,22 @@
 #include<stdlib.h>
 #include<unistd.h>
 
+void sort2(t_stack **top);
+void sort3(t_stack **top);
+void swap_a(t_stack **top);
+void swap_b(t_stack **top);
+void rotate_a(t_stack **top);
+void rotate_b(t_stack **top);
+void ft_rr(t_stack **top);
+void rra(t_stack **top);
+void push_a(t_stack **a, t_stack **b);
+void push_b(t_stack **a, t_stack **b);
+void rrr(t_stack **a, t_stack **b);
+void ft_ss(t_stack **a, t_stack **b);
+int find_min(t_stack *a);
+int find_max(t_stack *a);
+int find_index(t_stack *x, int nb);
+int calculate_cost(t_stack **a, int size);
+int find_min_cost(t_stack *a, int size);
+int find_min_cost_index(t_stack *a, int size);
 #endif
