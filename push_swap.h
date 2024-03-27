@@ -6,7 +6,7 @@
 /*   By: hichokri <hichokri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 01:50:33 by hichokri          #+#    #+#             */
-/*   Updated: 2024/03/26 01:56:16 by hichokri         ###   ########.fr       */
+/*   Updated: 2024/03/27 02:59:58 by hichokri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,8 @@ int find_index(t_stack *x, int nb);
 int calculate_cost(t_stack **a, int size);
 int find_min_cost(t_stack *a, int size);
 int find_min_cost_index(t_stack *a, int size);
+int args_size(char *argv[]);
+int ft_isspace(char *c);
+int count_spaces(char *argv[]);
+void ft_error(void);
 #endif

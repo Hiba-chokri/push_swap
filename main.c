@@ -6,7 +6,7 @@
 /*   By: hichokri <hichokri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 01:58:53 by hichokri          #+#    #+#             */
-/*   Updated: 2024/03/26 04:16:31 by hichokri         ###   ########.fr       */
+/*   Updated: 2024/03/27 03:34:21 by hichokri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,32 @@ int check_double(t_stack *a)
     return (0);
 }
 
-void ft_split_args(t_stack **a, char *argv[])
+void ft_split_args(t_stack **a,int argc, char *argv[])
 {
     t_stack *new;
-    int i = 0;
-
-    while (argv[i] != NULL)
+    int i = 1;
+    int j;
+    int ar = 0;
+    char    **tab;
+    
+    new = NULL;
+    while (i < argc)
     {
-        new = ft_lstnew(ft_atoi(argv[i]));
-        if (!new)
-            return ;
-        ft_lstadd_back(a, new);
+        j = 0;
+        tab = ft_split(argv[i], ' ');
+        while (tab[j])
+        {
+            ar = ft_atoi(tab[j]);
+            while (ar == 0 && tab[j][0] != '0')
+            {
+                if(tab[j][0] == '-' || tab[j][0] == '+')
+                    break;
+                exit(1);
+            }
+            new = ft_lstnew(ar);
+            ft_lstadd_back(a, new);
+            j++;
+        }
         i++;
     }
 }
@@ -107,22 +122,45 @@ int is_stack_sorted(t_stack *a)
     return (1);
 }
 
+int check_arg(char **argv)
+{
+    if(!count_spaces(argv))
+        return(0);
+    // if(check_character)
+    //     return(0);
+    // if(check_non_digits)
+    //     return(0);
+    return(1);
+}
+
 int main(int argc, char *argv[])
 {
-    t_stack *a;
+    t_stack *a = NULL;
     int *arr;
 
     arr = NULL;
-    a = malloc(sizeof(t_stack));
+    // a = malloc(sizeof(t_stack));
     if (argc < 2)
         exit(0);
+    if(!check_arg(argv))
+    {
+        ft_error();
+    }
+    
    else
-        ft_split_args(&a, argv);
-        if (argc == 2)
+        ft_split_args(&a,argc, argv);
+        
+        if (ft_lstsize(a) == 2)
             sort2(&a);
-        if ( argc == 4)
+        else if ( ft_lstsize(a) == 3)
             sort3(&a);
-        else
-            sort_big(&a);
+        // else
+        //     sort_big(&a);
+    
+    while(a != NULL)
+    {
+        printf("stack_a = %d\n",a->data);
+        a = a->next;
+    }
     return (0);
 }

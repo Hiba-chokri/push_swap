@@ -6,13 +6,10 @@ void swap_a(t_stack **top)
 
     if (!top || !*top)
         return ;
-    if ((*top)->data < (*top)->next->data)
-    {
-        tmp = *top;
-        *top = (*top)->next;
-        tmp->next = NULL;
-        (*top)->next = tmp; 
-    }
+    tmp = (*top)->next;
+    (*top)->next = (*top)->next->next;
+    tmp->next= *top;
+    *top = tmp;
     write(1, "sa\n", 3);
 }
 void swap_b(t_stack **top)

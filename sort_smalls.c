@@ -2,14 +2,12 @@
 
 void sort3(t_stack **top)
 {
-    if (((*top)->data > (*top)->next->data) && 
-        ((*top)->data < (*top)->next->next->data))
+    if (ft_lstsize(*top) > 2 && ((*top)->data > (*top)->next->data) && ((*top)->data < (*top)->next->next->data))
     {
         if ((*top)->next->data < (*top)->next->next->data)
             swap_a(top);
     }
-    if (((*top)->data > (*top)->next->data) && 
-        ((*top)->data > (*top)->next->next-data))
+    else if (((*top)->data > (*top)->next->data) && ((*top)->data > (*top)->next->next->data))
     {
         if ((*top)->next->data > (*top)->next->next->data)
             {
@@ -19,8 +17,7 @@ void sort3(t_stack **top)
         else
             rotate_a(top);
     }
-    if(((*top)->data < (*top)->next->data) && 
-        ((*top)->data < (*top)->next->next->data))
+    else if(((*top)->data < (*top)->next->data) &&  ((*top)->data < (*top)->next->next->data))
     {
         if ((*top)->next->data > (*top)->next->next->data)
             {
@@ -28,7 +25,7 @@ void sort3(t_stack **top)
                 rotate_a(top);
             }
     }
-    if (((*top)->data < (*top)->next->data) && 
+    else if (((*top)->data < (*top)->next->data) && 
         ((*top)->data > (*top)->next->next->data))
         rra(top);
 }
